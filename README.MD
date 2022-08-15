@@ -24,7 +24,9 @@ Por fim, rode o código MainClass.java que está dentro da pasta ./src
 COMANDOS PARA ADD ALTERAÇÕES NO GIT:
 
 git add ./
+
 git commit -m "descrição do commit"
+
 git push -u origin master
 
 

@@ -18,3 +18,16 @@ Execute o seguinte comando no terminal do próprio VS CODE:
 java -cp antlr-4.7.1-complete.jar org.antlr.v4.Tool IsiLang.g4 -package br.com.professorisidro.isilanguage.parser -o ./src/br/com/professorisidro/isilanguage/parser/
 
 Por fim, rode o código MainClass.java que está dentro da pasta ./src
+
+
+
+COMANDOS PARA ADD ALTERAÇÕES NO GIT:
+
+git add ./
+git commit -m "descrição do commit"
+git push -u origin master
+
+
+COMANDOS PARA ATUALIZAR O DIRETORIO:
+
+git pull

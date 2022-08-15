@@ -18,21 +18,20 @@ public class IsiProgram {
 		str.append("public class MainClass{ \n");
 		str.append("  public static void main(String args[]){\n ");
 		str.append("      Scanner _key = new Scanner(System.in);\n");
-		for (IsiSymbol symbol: varTable.getAll()) {
-			str.append(symbol.generateJavaCode()+"\n");
+		for (IsiSymbol symbol : varTable.getAll()) {
+			str.append(symbol.generateJavaCode() + "\n");
 		}
-		for (AbstractCommand command: comandos) {
-			str.append(command.generateJavaCode()+"\n");
+		for (AbstractCommand command : comandos) {
+			str.append(command.generateJavaCode() + "\n");
 		}
 		str.append("  }");
 		str.append("}");
-		
+
 		try {
 			FileWriter fr = new FileWriter(new File("MainClass.java"));
 			fr.write(str.toString());
 			fr.close();
-		}
-		catch(Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 

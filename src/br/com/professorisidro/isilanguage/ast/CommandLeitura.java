@@ -14,7 +14,8 @@ public class CommandLeitura extends AbstractCommand {
 
 	@Override
 	public String generateJavaCode() {
-		return id + "= _key." + (var.getType() == IsiVariable.NUMBER ? "nextDouble();" : "nextLine();");
+		return id + "= _key." + (var.getType() == IsiVariable.INTEIRO ? "nextInt();"
+				: var.getType() == IsiVariable.DECIMAL ? "nextDouble();" : "nextLine();");
 	}
 
 	@Override

@@ -42,25 +42,13 @@ public class IsiLangBaseListener implements IsiLangListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDecl(IsiLangParser.DeclContext ctx) { }
+	@Override public void enterDeclara(IsiLangParser.DeclaraContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDecl(IsiLangParser.DeclContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterDeclaravar(IsiLangParser.DeclaravarContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDeclaravar(IsiLangParser.DeclaravarContext ctx) { }
+	@Override public void exitDeclara(IsiLangParser.DeclaraContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -102,49 +90,49 @@ public class IsiLangBaseListener implements IsiLangListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCmdleitura(IsiLangParser.CmdleituraContext ctx) { }
+	@Override public void enterCmdLeitura(IsiLangParser.CmdLeituraContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCmdleitura(IsiLangParser.CmdleituraContext ctx) { }
+	@Override public void exitCmdLeitura(IsiLangParser.CmdLeituraContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCmdescrita(IsiLangParser.CmdescritaContext ctx) { }
+	@Override public void enterCmdEscrita(IsiLangParser.CmdEscritaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCmdescrita(IsiLangParser.CmdescritaContext ctx) { }
+	@Override public void exitCmdEscrita(IsiLangParser.CmdEscritaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCmdattrib(IsiLangParser.CmdattribContext ctx) { }
+	@Override public void enterCmdExpr(IsiLangParser.CmdExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCmdattrib(IsiLangParser.CmdattribContext ctx) { }
+	@Override public void exitCmdExpr(IsiLangParser.CmdExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCmdselecao(IsiLangParser.CmdselecaoContext ctx) { }
+	@Override public void enterCmdIf(IsiLangParser.CmdIfContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCmdselecao(IsiLangParser.CmdselecaoContext ctx) { }
+	@Override public void exitCmdIf(IsiLangParser.CmdIfContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -169,6 +157,18 @@ public class IsiLangBaseListener implements IsiLangListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTermo(IsiLangParser.TermoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFator(IsiLangParser.FatorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFator(IsiLangParser.FatorContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

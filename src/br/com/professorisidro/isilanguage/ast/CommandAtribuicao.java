@@ -11,8 +11,8 @@ public class CommandAtribuicao extends AbstractCommand {
 	}
 
 	@Override
-	public String generateJavaCode() {
-		return id + " = " + expr + ";";
+	public String generateJavaCode(int indentacao) {
+		return getIdent(indentacao) + id + " = " + expr + ";";
 	}
 
 	@Override

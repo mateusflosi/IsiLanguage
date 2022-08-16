@@ -15,19 +15,19 @@ public class CommandDecisao extends AbstractCommand {
 	}
 
 	@Override
-	public String generateJavaCode() {
+	public String generateJavaCode(int indentacao) {
 		StringBuilder str = new StringBuilder();
-		str.append("if (" + condition + ") {\n");
+		str.append(getIdent(indentacao) + "if (" + condition + ") {\n");
 		for (AbstractCommand cmd : listaTrue) {
-			str.append(cmd.generateJavaCode());
+			str.append(cmd.generateJavaCode(indentacao + 1));
 		}
-		str.append("}");
+		str.append("\n" + getIdent(indentacao) + "}\n");
 		if (listaFalse.size() > 0) {
-			str.append("else {\n");
+			str.append(getIdent(indentacao) + "else {\n");
 			for (AbstractCommand cmd : listaFalse) {
-				str.append(cmd.generateJavaCode());
+				str.append(cmd.generateJavaCode(indentacao + 1));
 			}
-			str.append("}\n");
+			str.append("\n" + getIdent(indentacao) + "}");
 
 		}
 		return str.toString();

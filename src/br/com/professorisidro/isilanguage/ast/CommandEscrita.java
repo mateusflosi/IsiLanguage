@@ -9,8 +9,8 @@ public class CommandEscrita extends AbstractCommand {
 	}
 
 	@Override
-	public String generateJavaCode() {
-		return "System.out.println(" + id + ");";
+	public String generateJavaCode(int indentacao) {
+		return getIdent(indentacao) + "System.out.println(" + id + ");";
 	}
 
 	@Override

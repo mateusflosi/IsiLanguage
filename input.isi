@@ -10,42 +10,7 @@ programa
   
   se ( a > b ) entao {
      escreva (a).
-     enquanto(a<b) faca {
-         escreva (a).
-         escreva(b).
-      }
-      se ( a == b ) entao {
-         escreva(a).
-      }
-      senao{
-         escreva(b).
-      } 
-  }
-  senao {
      escreva (b).
-     escreva(a).
-     escreva(a).
-     
+     escreva (a).
   }
-
-  se(a==4) entao{
-   escreva(b).
-   escreva(a).
-  }
-   enquanto(a>b) faca {
-      escreva (a).
-      enquanto(b<a) faca{
-         escreva(b).
-         enquanto(a==1) faca{
-            escreva(a).
-            escreva(b).
-            escreva(a).
-         }
-         se(b==2) entao{
-            escreva(b).
-            escreva(a).
-            escreva(b).
-         }
-      }
-   }
 fimprog.

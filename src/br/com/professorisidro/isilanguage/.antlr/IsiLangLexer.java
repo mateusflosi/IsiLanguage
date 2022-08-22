@@ -1,4 +1,4 @@
-// Generated from c:\Users\User\Documents\UFABC\QS6\Compiladores\IsiLanguage\IsiLang.g4 by ANTLR 4.9.2
+// Generated from c:\Users\User\Documents\UFABC\QS6\Compiladores\IsiLanguage\src\br\com\professorisidro\isilanguage\IsiLang.g4 by ANTLR 4.9.2
 
 	import br.com.professorisidro.isilanguage.datastructures.IsiSymbol;
 	import br.com.professorisidro.isilanguage.datastructures.IsiVariable;

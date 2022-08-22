@@ -92,7 +92,12 @@ bloco:
 	        stack.push(curThread);  
           } (cmd)+;
 
-cmd: cmdLeitura SC | cmdEscrita SC | cmdExpr SC | cmdIf | cmdWhile;
+cmd:
+	cmdLeitura SC
+	| cmdEscrita SC
+	| cmdExpr SC
+	| cmdIf
+	| cmdWhile;
 
 cmdLeitura:
 	'leia' AP ID { verificaID(_input.LT(-1).getText());
@@ -123,30 +128,22 @@ cmdIf:
 	'se' AP expr { _exprDecision = _input.LT(-1).getText(); } OPREL { _exprDecision += _input.LT(-1).getText(); 
 		} expr {_exprDecision += _input.LT(-1).getText(); } FP 'entao' ACH { curThread = new ArrayList<AbstractCommand>(); 
                       stack.push(curThread);
-					  stackDecision.push(_exprDecision);
                     } (cmd)+ FCH {
-                       listaTrue = stack.pop();
-					   _exprDecision = stackDecision.pop();
-					   
+                       listaTrue = stack.pop();	
                     } (
 		'senao' ACH {
                    	 	curThread = new ArrayList<AbstractCommand>();
                    	 	stack.push(curThread);
-						stackDecision.push(_exprDecision);
                    	 } (cmd)+ FCH {
                    		listaFalse = stack.pop();
-						_exprDecision = stackDecision.pop();
-                   		
+                   		CommandDecisao cmd = new CommandDecisao(_exprDecision, listaTrue, listaFalse);
+                   		stack.peek().add(cmd);
                    	}
-	)?	{
-		//Problema nessa parte. Caso coloque apenas um if sem else no input, o else ainda aparecera e com os comandos de outro else. ARRUMAR
-
-		CommandDecisao cmd = new CommandDecisao(_exprDecision, listaTrue, listaFalse);
-        stack.peek().add(cmd);};
+	)?;
 
 cmdWhile:
-	'enquanto' 	AP expr { _exprDecision = _input.LT(-1).getText(); } OPREL { _exprDecision += _input.LT(-1).getText(); 
-		} expr {_exprDecision += _input.LT(-1).getText();} FP 'faca' ACH  { curThread = new ArrayList<AbstractCommand>(); 
+	'enquanto' AP expr { _exprDecision = _input.LT(-1).getText(); } OPREL { _exprDecision += _input.LT(-1).getText(); 
+		} expr {_exprDecision += _input.LT(-1).getText();} FP 'faca' ACH { curThread = new ArrayList<AbstractCommand>(); 
                       stack.push(curThread);
 					  stackDecision.push(_exprDecision);
                     } (cmd)+ FCH {
@@ -155,7 +152,6 @@ cmdWhile:
 					   CommandRepeticao cmd = new CommandRepeticao(_exprDecision, listaTrue);
 					   stack.peek().add(cmd);	
                     };
-
 
 expr: fator termo;
 

@@ -20,16 +20,16 @@ public class CommandDecisao extends AbstractCommand {
 		str.append(getIdent(indentacao) + "if (" + condition + ") {\n");
 		for (AbstractCommand cmd : listaTrue) {
 			str.append(cmd.generateJavaCode(indentacao + 1));
-			if(!(cmd.equals(listaTrue.get(listaTrue.size() - 1)))){
+			if (!(cmd.equals(listaTrue.get(listaTrue.size() - 1)))) {
 				str.append("\n");
 			}
 		}
 		str.append("\n" + getIdent(indentacao) + "}\n");
-		if (listaFalse.size() > 0) {
+		if (listaFalse != null && listaFalse.size() > 0) {
 			str.append(getIdent(indentacao) + "else {\n");
 			for (AbstractCommand cmd : listaFalse) {
 				str.append(cmd.generateJavaCode(indentacao + 1));
-				if(!(cmd.equals(listaFalse.get(listaFalse.size() - 1)))){
+				if (!(cmd.equals(listaFalse.get(listaFalse.size() - 1)))) {
 					str.append("\n");
 				}
 			}

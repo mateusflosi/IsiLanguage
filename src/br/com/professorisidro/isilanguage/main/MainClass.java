@@ -3,7 +3,7 @@ package br.com.professorisidro.isilanguage.main;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
-import br.com.professorisidro.isilanguage.exceptions.IsiSemanticException;
+import br.com.professorisidro.isilanguage.exceptions.*;
 import br.com.professorisidro.isilanguage.parser.IsiLangLexer;
 import br.com.professorisidro.isilanguage.parser.IsiLangParser;
 
@@ -30,14 +30,16 @@ public class MainClass {
 
 			parser.prog();
 
-			System.out.println("Compilation Successful");
+			parser.generateCode();
 
 			parser.exibeComandos();
 
-			parser.generateCode();
+			System.out.println("Compilation Successful");
 
 		} catch (IsiSemanticException ex) {
 			System.err.println("Semantic error - " + ex.getMessage());
+		} catch (IsiLexicException ex) {
+			System.err.println("Lexic error - " + ex.getMessage());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			System.err.println("ERROR " + ex.getMessage());

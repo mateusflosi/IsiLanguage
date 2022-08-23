@@ -1,6 +1,8 @@
 package br.com.professorisidro.isilanguage.ast;
 
 import br.com.professorisidro.isilanguage.datastructures.IsiSymbolTable;
+import br.com.professorisidro.isilanguage.exceptions.IsiLexicException;
+import br.com.professorisidro.isilanguage.exceptions.IsiSemanticException;
 
 public class CommandAtribuicao extends AbstractCommand {
 
@@ -15,13 +17,14 @@ public class CommandAtribuicao extends AbstractCommand {
 	}
 
 	@Override
-	public String generateJavaCode(int indentacao) {
+	public String generateJavaCode(int indentacao) throws IsiLexicException {
+		// throw new IsiLexicException("Era esperado");
 		return getIdent(indentacao) + id + " = " + expr + ";";
 	}
 
 	@Override
 	public String toString() {
-		return list.get("a").getType() + " CommandAtribuicao [id=" + id + ", expr=" + expr + "]";
+		return "CommandAtribuicao [id=" + id + ", expr=" + expr + "]";
 	}
 
 }

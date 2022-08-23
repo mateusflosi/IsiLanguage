@@ -1,13 +1,17 @@
 package br.com.professorisidro.isilanguage.ast;
 
+import br.com.professorisidro.isilanguage.datastructures.IsiSymbolTable;
+
 public class CommandAtribuicao extends AbstractCommand {
 
 	private String id;
 	private String expr;
+	private IsiSymbolTable list;
 
-	public CommandAtribuicao(String id, String expr) {
+	public CommandAtribuicao(String id, String expr, IsiSymbolTable list) {
 		this.id = id;
 		this.expr = expr;
+		this.list = list;
 	}
 
 	@Override
@@ -17,7 +21,7 @@ public class CommandAtribuicao extends AbstractCommand {
 
 	@Override
 	public String toString() {
-		return "CommandAtribuicao [id=" + id + ", expr=" + expr + "]";
+		return list.get("a").getType() + " CommandAtribuicao [id=" + id + ", expr=" + expr + "]";
 	}
 
 }

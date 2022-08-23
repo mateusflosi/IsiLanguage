@@ -105,7 +105,7 @@ public class IsiLangLexer extends Lexer {
 		private String _varName;
 		private String _varValue;
 		private IsiSymbolTable symbolTable = new IsiSymbolTable();
-		private IsiSymbol symbol;
+		private IsiVariable symbol;
 		private IsiProgram program = new IsiProgram();
 		private ArrayList<AbstractCommand> curThread;
 		private Stack<ArrayList<AbstractCommand>> stack = new Stack<ArrayList<AbstractCommand>>();

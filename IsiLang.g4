@@ -21,7 +21,7 @@ grammar IsiLang;
 	private String _varName;
 	private String _varValue;
 	private IsiSymbolTable symbolTable = new IsiSymbolTable();
-	private IsiSymbol symbol;
+	private IsiVariable symbol;
 	private IsiProgram program = new IsiProgram();
 	private ArrayList<AbstractCommand> curThread;
 	private Stack<ArrayList<AbstractCommand>> stack = new Stack<ArrayList<AbstractCommand>>();
@@ -92,7 +92,12 @@ bloco:
 	        stack.push(curThread);  
           } (cmd)+;
 
-cmd: cmdLeitura SC | cmdEscrita SC | cmdExpr SC | cmdIf | cmdWhile;
+cmd:
+	cmdLeitura SC
+	| cmdEscrita SC
+	| cmdExpr SC
+	| cmdIf
+	| cmdWhile;
 
 cmdLeitura:
 	'leia' AP ID { verificaID(_input.LT(-1).getText());
@@ -115,7 +120,7 @@ cmdExpr:
 	ID { verificaID(_input.LT(-1).getText());
                     _exprID = _input.LT(-1).getText();
                    } ATTR { _exprContent = ""; } expr {
-               	 CommandAtribuicao cmd = new CommandAtribuicao(_exprID, _exprContent);
+               	 CommandAtribuicao cmd = new CommandAtribuicao(_exprID, _exprContent, symbolTable);
                	 stack.peek().add(cmd);
                };
 
@@ -138,15 +143,15 @@ cmdIf:
 						_exprDecision = stackDecision.pop();
                    		
                    	}
-	)?	{
+	)? {
 		//Problema nessa parte. Caso coloque apenas um if sem else no input, o else ainda aparecera e com os comandos de outro else. ARRUMAR
 
 		CommandDecisao cmd = new CommandDecisao(_exprDecision, listaTrue, listaFalse);
         stack.peek().add(cmd);};
 
 cmdWhile:
-	'enquanto' 	AP expr { _exprDecision = _input.LT(-1).getText(); } OPREL { _exprDecision += _input.LT(-1).getText(); 
-		} expr {_exprDecision += _input.LT(-1).getText();} FP 'faca' ACH  { curThread = new ArrayList<AbstractCommand>(); 
+	'enquanto' AP expr { _exprDecision = _input.LT(-1).getText(); } OPREL { _exprDecision += _input.LT(-1).getText(); 
+		} expr {_exprDecision += _input.LT(-1).getText();} FP 'faca' ACH { curThread = new ArrayList<AbstractCommand>(); 
                       stack.push(curThread);
 					  stackDecision.push(_exprDecision);
                     } (cmd)+ FCH {
@@ -155,7 +160,6 @@ cmdWhile:
 					   CommandRepeticao cmd = new CommandRepeticao(_exprDecision, listaTrue);
 					   stack.peek().add(cmd);	
                     };
-
 
 expr: fator termo;
 

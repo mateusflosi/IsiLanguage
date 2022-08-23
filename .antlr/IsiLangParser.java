@@ -112,7 +112,7 @@ public class IsiLangParser extends Parser {
 		private String _varName;
 		private String _varValue;
 		private IsiSymbolTable symbolTable = new IsiSymbolTable();
-		private IsiSymbol symbol;
+		private IsiVariable symbol;
 		private IsiProgram program = new IsiProgram();
 		private ArrayList<AbstractCommand> curThread;
 		private Stack<ArrayList<AbstractCommand>> stack = new Stack<ArrayList<AbstractCommand>>();
@@ -608,7 +608,7 @@ public class IsiLangParser extends Parser {
 			setState(95);
 			expr();
 
-			               	 CommandAtribuicao cmd = new CommandAtribuicao(_exprID, _exprContent);
+			               	 CommandAtribuicao cmd = new CommandAtribuicao(_exprID, _exprContent, symbolTable);
 			               	 stack.peek().add(cmd);
 			               
 			}

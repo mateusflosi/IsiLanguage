@@ -33,28 +33,28 @@ grammar IsiLang;
 	private String _exprDecision;
 	private ArrayList<AbstractCommand> listaTrue;
 	private ArrayList<AbstractCommand> listaFalse;
-	
+
 	public void verificaID(String id){
 		if (!symbolTable.exists(id)){
 			throw new IsiSemanticException("Symbol "+id+" not declared");
 		}
 	}
-	
+
 	public void exibeComandos(){
 		for (AbstractCommand c: program.getComandos()){
 			System.out.println(c);
 		}
 	}
-	
+
 	public void generateCode(){
 		program.generateTarget();
 	}
 }
 
 prog:
-	'programa' (declara)+ bloco 'fimprog.' {  
+	'programa' (declara)+ bloco 'fimprog.' {
 		program.setVarTable(symbolTable);
-        program.setComandos(stack.pop());   	 
+        program.setComandos(stack.pop());
            };
 
 declara:
@@ -63,7 +63,7 @@ declara:
 	                  _varValue = null;
 	                  symbol = new IsiVariable(_varName, _tipo, _varValue);
 	                  if (!symbolTable.exists(_varName)){
-	                     symbolTable.add(symbol);	
+	                     symbolTable.add(symbol);
 	                  }
 	                  else{
 	                  	 throw new IsiSemanticException("Symbol "+_varName+" already declared");
@@ -74,7 +74,7 @@ declara:
 	                  _varValue = null;
 	                  symbol = new IsiVariable(_varName, _tipo, _varValue);
 	                  if (!symbolTable.exists(_varName)){
-	                     symbolTable.add(symbol);	
+	                     symbolTable.add(symbol);
 	                  }
 	                  else{
 	                  	 throw new IsiSemanticException("Symbol "+_varName+" already declared");
@@ -88,8 +88,8 @@ tipo:
 	| 'texto' { _tipo = IsiVariable.TEXT;  };
 
 bloco:
-	{ curThread = new ArrayList<AbstractCommand>(); 
-	        stack.push(curThread);  
+	{ curThread = new ArrayList<AbstractCommand>();
+	        stack.push(curThread);
           } (cmd)+;
 
 cmd:
@@ -125,14 +125,14 @@ cmdExpr:
                };
 
 cmdIf:
-	'se' AP expr { _exprDecision = _input.LT(-1).getText(); } OPREL { _exprDecision += _input.LT(-1).getText(); 
-		} expr {_exprDecision += _input.LT(-1).getText(); } FP 'entao' ACH { curThread = new ArrayList<AbstractCommand>(); 
+	'se' AP expr { _exprDecision = _input.LT(-1).getText(); } OPREL { _exprDecision += _input.LT(-1).getText();
+		} expr {_exprDecision += _input.LT(-1).getText(); } FP 'entao' ACH { curThread = new ArrayList<AbstractCommand>();
                       stack.push(curThread);
 					  stackDecision.push(_exprDecision);
                     } (cmd)+ FCH {
                        listaTrue = stack.pop();
 					   _exprDecision = stackDecision.pop();
-					   
+
                     } (
 		'senao' ACH {
                    	 	curThread = new ArrayList<AbstractCommand>();
@@ -141,7 +141,7 @@ cmdIf:
                    	 } (cmd)+ FCH {
                    		listaFalse = stack.pop();
 						_exprDecision = stackDecision.pop();
-                   		
+
                    	}
 	)? {
 		//Problema nessa parte. Caso coloque apenas um if sem else no input, o else ainda aparecera e com os comandos de outro else. ARRUMAR
@@ -150,15 +150,15 @@ cmdIf:
         stack.peek().add(cmd);};
 
 cmdWhile:
-	'enquanto' AP expr { _exprDecision = _input.LT(-1).getText(); } OPREL { _exprDecision += _input.LT(-1).getText(); 
-		} expr {_exprDecision += _input.LT(-1).getText();} FP 'faca' ACH { curThread = new ArrayList<AbstractCommand>(); 
+	'enquanto' AP expr { _exprDecision = _input.LT(-1).getText(); } OPREL { _exprDecision += _input.LT(-1).getText();
+		} expr {_exprDecision += _input.LT(-1).getText();} FP 'faca' ACH { curThread = new ArrayList<AbstractCommand>();
                       stack.push(curThread);
 					  stackDecision.push(_exprDecision);
                     } (cmd)+ FCH {
                        listaTrue = stack.pop();
 					   _exprDecision = stackDecision.pop();
 					   CommandRepeticao cmd = new CommandRepeticao(_exprDecision, listaTrue);
-					   stack.peek().add(cmd);	
+					   stack.peek().add(cmd);
                     };
 
 expr: fator termo;
@@ -183,7 +183,7 @@ FP: ')';
 
 SC: '.';
 
-OP: '+' | '-' | '*' | '/' | '^';
+OP: '+' | '-' | '*' | '/' | '^' | ':' | '#';
 
 ATTR: ':=';
 

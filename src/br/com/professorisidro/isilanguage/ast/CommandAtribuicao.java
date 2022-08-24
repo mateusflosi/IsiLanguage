@@ -31,8 +31,8 @@ public class CommandAtribuicao extends AbstractCommand {
 			throw new IsiLexicException("Erro: Tipo incompatível com a variável \""+id+"\" era esperado um tipo String");
 		}
 		expr = exp(expr);
-        expr= raiz(expr);
-        expr = log(expr);
+        	expr= raiz(expr);
+        	expr = log(expr);
 		return getIdent(indentacao) + id + " = " + expr + ";";
 	}
 
@@ -92,34 +92,34 @@ public class CommandAtribuicao extends AbstractCommand {
 
 
 	private String exp(String expr) {
-        String regex = "(?<n1>"+ "[0-9]+(\\.[0-9]+)?" +")\\^(?<n2>"+ "[0-9]+(\\.[0-9]+)?" +")";
-    	Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
-    	Matcher matcher = pattern.matcher(expr);
+		String regex = "(?<n1>"+ "[0-9]+(\\.[0-9]+)?" +")\\^(?<n2>"+ "[0-9]+(\\.[0-9]+)?" +")";
+		Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
+		Matcher matcher = pattern.matcher(expr);
 
 		String subst = "Math.pow(${n1}, ${n2})";
-    	String modifiedExpression = matcher.replaceAll(subst);
-    	return modifiedExpression;
-    }
+		String modifiedExpression = matcher.replaceAll(subst);
+		return modifiedExpression;
+    	}
 
-    private String raiz(String expr) {
-        String regex = "(?<n1>"+ "[0-9]+(\\.[0-9]+)?" +")\\:(?<n2>"+ "[0-9]+(\\.[0-9]+)?" +")";
+    	private String raiz(String expr) {
+        	String regex = "(?<n1>"+ "[0-9]+(\\.[0-9]+)?" +")\\:(?<n2>"+ "[0-9]+(\\.[0-9]+)?" +")";
 		Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
 		Matcher matcher = pattern.matcher(expr);
 
 		String subst = "Math.pow(${n1}, 1/${n2})";
 		String modifiedExpression = matcher.replaceAll(subst);
-        return modifiedExpression;
-    }
+        	return modifiedExpression;
+    	}
 
-    private String log(String exp) {
-        String regex = "(?<n1>"+ "[0-9]+(\\.[0-9]+)?" +")\\#(?<n2>"+ "[0-9]+(\\.[0-9]+)?" +")";
+    	private String log(String exp) {
+        	String regex = "(?<n1>"+ "[0-9]+(\\.[0-9]+)?" +")\\#(?<n2>"+ "[0-9]+(\\.[0-9]+)?" +")";
 		Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
 		Matcher matcher = pattern.matcher(expr);
 
 		String subst = "Math.log(${n1})/Math.log(${n2})";
 		String modifiedExpression = matcher.replaceAll(subst);
-        return modifiedExpression;
-    }
+        	return modifiedExpression;
+    	}
 
 	@Override
 	public String toString() {

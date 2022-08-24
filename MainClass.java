@@ -7,12 +7,9 @@ public class MainClass{
 		int  i;
 		String  t1;
 		a= _key.nextInt();
-		b= _key.nextInt();
-		a = 1+2*3/b+t1;
 		t1 = "kaio";
+		b = a;
 		if (a>b) {
-			System.out.println(a);
-			System.out.println(b);
 			System.out.println(a);
 		}
 

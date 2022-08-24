@@ -33,6 +33,7 @@ grammar IsiLang;
 	private String _exprDecision;
 	private ArrayList<AbstractCommand> listaTrue;
 	private ArrayList<AbstractCommand> listaFalse;
+	private ArrayList<String> _getNotUsedVariables = new ArrayList<String>();
 	
 	public void verificaID(String id){
 		if (!symbolTable.exists(id)){
@@ -54,8 +55,11 @@ grammar IsiLang;
 prog:
 	'programa' (declara)+ bloco 'fimprog.' {  
 		program.setVarTable(symbolTable);
-        program.setComandos(stack.pop());   	 
-           };
+        program.setComandos(stack.pop());
+		if(_getNotUsedVariables.size() > 0){
+        	System.err.println("Warning -"+_getNotUsedVariables+" not used");
+    	}   	 
+    };
 
 declara:
 	'declare' tipo ID {
@@ -64,6 +68,7 @@ declara:
 	                  symbol = new IsiVariable(_varName, _tipo, _varValue);
 	                  if (!symbolTable.exists(_varName)){
 	                     symbolTable.add(symbol);	
+						 _getNotUsedVariables.add(_varName);
 	                  }
 	                  else{
 	                  	 throw new IsiSemanticException("Symbol "+_varName+" already declared");
@@ -74,7 +79,8 @@ declara:
 	                  _varValue = null;
 	                  symbol = new IsiVariable(_varName, _tipo, _varValue);
 	                  if (!symbolTable.exists(_varName)){
-	                     symbolTable.add(symbol);	
+	                     symbolTable.add(symbol);
+						 _getNotUsedVariables.add(_varName);
 	                  }
 	                  else{
 	                  	 throw new IsiSemanticException("Symbol "+_varName+" already declared");
@@ -109,8 +115,9 @@ cmdLeitura:
               };
 
 cmdEscrita:
-	'escreva' AP (ID | TEXTO) { verificaID(_input.LT(-1).getText());
+	'escreva' AP ID { verificaID(_input.LT(-1).getText());
 	                  _writeID = _input.LT(-1).getText();
+					  _getNotUsedVariables.remove(_writeID);
                      } FP {
                	  CommandEscrita cmd = new CommandEscrita(_writeID);
                	  stack.peek().add(cmd);
@@ -169,12 +176,15 @@ termo:
 fator:
 	TEXTO {
               	_exprContent += _input.LT(-1).getText();
+				_getNotUsedVariables.remove(_input.LT(-1).getText());
               }
 	| NUMBER {
               	_exprContent += _input.LT(-1).getText();
+				_getNotUsedVariables.remove(_input.LT(-1).getText());
               }
 	| ID { verificaID(_input.LT(-1).getText());
 	               _exprContent += _input.LT(-1).getText();
+				   _getNotUsedVariables.remove(_input.LT(-1).getText());
                  };
 
 AP: '(';

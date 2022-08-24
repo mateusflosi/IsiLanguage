@@ -1,17 +1,15 @@
 programa
 
-  declare int a, b , i.
-  declare texto  t1.
+  declare int a, b, i.
+  declare texto t1.
 
   leia (a).
-  leia (b).
-  
-  a := 1 + 2 * 3 / b + t1.    
+
   t1 := "kaio".
-  
-  se ( a > b ) entao {
-     escreva (a).
-     escreva (b).
-     escreva (a).
+  b := a.
+
+  se (a > b) entao {
+    escreva (a).
   }
+
 fimprog.

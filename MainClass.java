@@ -8,7 +8,8 @@ public class MainClass{
 		String  t1;
 		a= _key.nextInt();
 		b= _key.nextInt();
-		a = 1+2*3/b;
+		a = 1+2*3/b+t1;
+		t1 = "kaio";
 		if (a>b) {
 			System.out.println(a);
 			System.out.println(b);

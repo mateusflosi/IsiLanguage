@@ -1,15 +1,55 @@
 programa
 
-  declare int a, b, i.
-  declare texto t1.
-
-  leia (a).
-
+  declare int a, b , i, r, l , e.
+  declare texto  t1.
   t1 := "kaio".
-  b := a.
+  leia (a).
+  leia (b).
+  e := 2 ^ 2.
+  r := 1 : 2.
+  l := 10 # 10.
 
-  se (a > b) entao {
-    escreva (a).
+
+  a := 1 + 2 * 3 / b.
+
+  se ( a > b ) entao {
+     escreva (a).
+     enquanto(a<b) faca {
+         escreva (a).
+         escreva(b).
+      }
+      se ( a == b ) entao {
+         escreva(a).
+      }
+      senao{
+         escreva(b).
+      }
+  }
+  senao {
+     escreva (b).
+     escreva(a).
+     escreva(a).
+
   }
 
+  se(a==4) entao{
+   escreva(b).
+   escreva(a).
+  }
+   enquanto(a>b) faca {
+      escreva (a).
+      enquanto(b<a) faca{
+         escreva(b).
+         enquanto(a==1) faca{
+            escreva(a).
+            escreva(b).
+            escreva(a).
+         }
+         se(b==2) entao{
+            escreva(b).
+            escreva(a).
+            escreva(b).
+         }
+      }
+   }
 fimprog.

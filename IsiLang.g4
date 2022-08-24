@@ -33,33 +33,29 @@ grammar IsiLang;
 	private String _exprDecision;
 	private ArrayList<AbstractCommand> listaTrue;
 	private ArrayList<AbstractCommand> listaFalse;
-	private ArrayList<String> _getNotUsedVariables = new ArrayList<String>();
-	
+
 	public void verificaID(String id){
 		if (!symbolTable.exists(id)){
 			throw new IsiSemanticException("Symbol "+id+" not declared");
 		}
 	}
-	
+
 	public void exibeComandos(){
 		for (AbstractCommand c: program.getComandos()){
 			System.out.println(c);
 		}
 	}
-	
+
 	public void generateCode(){
 		program.generateTarget();
 	}
 }
 
 prog:
-	'programa' (declara)+ bloco 'fimprog.' {  
+	'programa' (declara)+ bloco 'fimprog.' {
 		program.setVarTable(symbolTable);
         program.setComandos(stack.pop());
-		if(_getNotUsedVariables.size() > 0){
-        	System.err.println("Warning -"+_getNotUsedVariables+" not used");
-    	}   	 
-    };
+           };
 
 declara:
 	'declare' tipo ID {
@@ -67,8 +63,7 @@ declara:
 	                  _varValue = null;
 	                  symbol = new IsiVariable(_varName, _tipo, _varValue);
 	                  if (!symbolTable.exists(_varName)){
-	                     symbolTable.add(symbol);	
-						 _getNotUsedVariables.add(_varName);
+	                     symbolTable.add(symbol);
 	                  }
 	                  else{
 	                  	 throw new IsiSemanticException("Symbol "+_varName+" already declared");
@@ -80,7 +75,6 @@ declara:
 	                  symbol = new IsiVariable(_varName, _tipo, _varValue);
 	                  if (!symbolTable.exists(_varName)){
 	                     symbolTable.add(symbol);
-						 _getNotUsedVariables.add(_varName);
 	                  }
 	                  else{
 	                  	 throw new IsiSemanticException("Symbol "+_varName+" already declared");
@@ -94,8 +88,8 @@ tipo:
 	| 'texto' { _tipo = IsiVariable.TEXT;  };
 
 bloco:
-	{ curThread = new ArrayList<AbstractCommand>(); 
-	        stack.push(curThread);  
+	{ curThread = new ArrayList<AbstractCommand>();
+	        stack.push(curThread);
           } (cmd)+;
 
 cmd:
@@ -115,9 +109,8 @@ cmdLeitura:
               };
 
 cmdEscrita:
-	'escreva' AP ID { verificaID(_input.LT(-1).getText());
+	'escreva' AP (ID | TEXTO) { verificaID(_input.LT(-1).getText());
 	                  _writeID = _input.LT(-1).getText();
-					  _getNotUsedVariables.remove(_writeID);
                      } FP {
                	  CommandEscrita cmd = new CommandEscrita(_writeID);
                	  stack.peek().add(cmd);
@@ -132,14 +125,14 @@ cmdExpr:
                };
 
 cmdIf:
-	'se' AP expr { _exprDecision = _input.LT(-1).getText(); } OPREL { _exprDecision += _input.LT(-1).getText(); 
-		} expr {_exprDecision += _input.LT(-1).getText(); } FP 'entao' ACH { curThread = new ArrayList<AbstractCommand>(); 
+	'se' AP expr { _exprDecision = _input.LT(-1).getText(); } OPREL { _exprDecision += _input.LT(-1).getText();
+		} expr {_exprDecision += _input.LT(-1).getText(); } FP 'entao' ACH { curThread = new ArrayList<AbstractCommand>();
                       stack.push(curThread);
 					  stackDecision.push(_exprDecision);
                     } (cmd)+ FCH {
                        listaTrue = stack.pop();
 					   _exprDecision = stackDecision.pop();
-					   
+
                     } (
 		'senao' ACH {
                    	 	curThread = new ArrayList<AbstractCommand>();
@@ -148,7 +141,7 @@ cmdIf:
                    	 } (cmd)+ FCH {
                    		listaFalse = stack.pop();
 						_exprDecision = stackDecision.pop();
-                   		
+
                    	}
 	)? {
 		//Problema nessa parte. Caso coloque apenas um if sem else no input, o else ainda aparecera e com os comandos de outro else. ARRUMAR
@@ -157,15 +150,15 @@ cmdIf:
         stack.peek().add(cmd);};
 
 cmdWhile:
-	'enquanto' AP expr { _exprDecision = _input.LT(-1).getText(); } OPREL { _exprDecision += _input.LT(-1).getText(); 
-		} expr {_exprDecision += _input.LT(-1).getText();} FP 'faca' ACH { curThread = new ArrayList<AbstractCommand>(); 
+	'enquanto' AP expr { _exprDecision = _input.LT(-1).getText(); } OPREL { _exprDecision += _input.LT(-1).getText();
+		} expr {_exprDecision += _input.LT(-1).getText();} FP 'faca' ACH { curThread = new ArrayList<AbstractCommand>();
                       stack.push(curThread);
 					  stackDecision.push(_exprDecision);
                     } (cmd)+ FCH {
                        listaTrue = stack.pop();
 					   _exprDecision = stackDecision.pop();
 					   CommandRepeticao cmd = new CommandRepeticao(_exprDecision, listaTrue);
-					   stack.peek().add(cmd);	
+					   stack.peek().add(cmd);
                     };
 
 expr: fator termo;
@@ -176,15 +169,12 @@ termo:
 fator:
 	TEXTO {
               	_exprContent += _input.LT(-1).getText();
-				_getNotUsedVariables.remove(_input.LT(-1).getText());
               }
 	| NUMBER {
               	_exprContent += _input.LT(-1).getText();
-				_getNotUsedVariables.remove(_input.LT(-1).getText());
               }
 	| ID { verificaID(_input.LT(-1).getText());
 	               _exprContent += _input.LT(-1).getText();
-				   _getNotUsedVariables.remove(_input.LT(-1).getText());
                  };
 
 AP: '(';
@@ -193,7 +183,7 @@ FP: ')';
 
 SC: '.';
 
-OP: '+' | '-' | '*' | '/' | '^';
+OP: '+' | '-' | '*' | '/' | '^' | ':' | '#';
 
 ATTR: ':=';
 

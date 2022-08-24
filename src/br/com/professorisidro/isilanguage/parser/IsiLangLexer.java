@@ -109,6 +109,7 @@ public class IsiLangLexer extends Lexer {
 		private String _exprDecision;
 		private ArrayList<AbstractCommand> listaTrue;
 		private ArrayList<AbstractCommand> listaFalse;
+		private ArrayList<String> _getNotUsedVariables = new ArrayList<String>();
 		
 		public void verificaID(String id){
 			if (!symbolTable.exists(id)){

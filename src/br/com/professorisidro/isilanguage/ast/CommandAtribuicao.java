@@ -2,7 +2,6 @@ package br.com.professorisidro.isilanguage.ast;
 
 import br.com.professorisidro.isilanguage.datastructures.IsiSymbolTable;
 import br.com.professorisidro.isilanguage.exceptions.IsiLexicException;
-import br.com.professorisidro.isilanguage.exceptions.IsiSemanticException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,13 +1,13 @@
 import java.util.Scanner;
-public class MainClass{
+public class MainClass{ 
 	public static void main(String args[]){
  		Scanner _key = new Scanner(System.in);
 		int  a;
 		int  b;
-		int  r;
-		int  e;
+		double  r;
+		double  e;
 		int  i;
-		int  l;
+		double  l;
 		String  t1;
 		t1 = "kaio";
 		a= _key.nextInt();

@@ -1,5 +1,4 @@
-// Generated from IsiLang.g4 by ANTLR 4.7.1
-package br.com.professorisidro.isilanguage.parser;
+// Generated from c:\Users\User\Documents\UFABC\QS6\Compiladores\IsiLanguage\IsiLang.g4 by ANTLR 4.9.2
 
 	import br.com.professorisidro.isilanguage.datastructures.IsiSymbol;
 	import br.com.professorisidro.isilanguage.datastructures.IsiVariable;
@@ -26,7 +25,7 @@ import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class IsiLangLexer extends Lexer {
-	static { RuntimeMetaData.checkVersion("4.7.1", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.9.2", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -43,22 +42,31 @@ public class IsiLangLexer extends Lexer {
 		"DEFAULT_MODE"
 	};
 
-	public static final String[] ruleNames = {
-		"T__0", "T__1", "T__2", "T__3", "T__4", "T__5", "T__6", "T__7", "T__8", 
-		"T__9", "T__10", "T__11", "T__12", "AP", "FP", "SC", "OP", "ATTR", "VIR", 
-		"ACH", "FCH", "A", "OPREL", "ID", "NUMBER", "TEXTO", "WS"
-	};
+	private static String[] makeRuleNames() {
+		return new String[] {
+			"T__0", "T__1", "T__2", "T__3", "T__4", "T__5", "T__6", "T__7", "T__8", 
+			"T__9", "T__10", "T__11", "T__12", "AP", "FP", "SC", "OP", "ATTR", "VIR", 
+			"ACH", "FCH", "A", "OPREL", "ID", "NUMBER", "TEXTO", "WS"
+		};
+	}
+	public static final String[] ruleNames = makeRuleNames();
 
-	private static final String[] _LITERAL_NAMES = {
-		null, "'programa'", "'fimprog.'", "'declare'", "'int'", "'decimal'", "'texto'", 
-		"'leia'", "'escreva'", "'se'", "'entao'", "'senao'", "'enquanto'", "'faca'", 
-		"'('", "')'", "'.'", null, "':='", "','", "'{'", "'}'", "'\"'"
-	};
-	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, "AP", "FP", "SC", "OP", "ATTR", "VIR", "ACH", "FCH", "A", 
-		"OPREL", "ID", "NUMBER", "TEXTO", "WS"
-	};
+	private static String[] makeLiteralNames() {
+		return new String[] {
+			null, "'programa'", "'fimprog.'", "'declare'", "'int'", "'decimal'", 
+			"'texto'", "'leia'", "'escreva'", "'se'", "'entao'", "'senao'", "'enquanto'", 
+			"'faca'", "'('", "')'", "'.'", null, "':='", "','", "'{'", "'}'", "'\"'"
+		};
+	}
+	private static final String[] _LITERAL_NAMES = makeLiteralNames();
+	private static String[] makeSymbolicNames() {
+		return new String[] {
+			null, null, null, null, null, null, null, null, null, null, null, null, 
+			null, null, "AP", "FP", "SC", "OP", "ATTR", "VIR", "ACH", "FCH", "A", 
+			"OPREL", "ID", "NUMBER", "TEXTO", "WS"
+		};
+	}
+	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
 	/**

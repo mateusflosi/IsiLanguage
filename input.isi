@@ -1,6 +1,7 @@
 programa
 
-  declare int a, b , i, r, l , e.
+  declare int a, b , i.
+  declare decimal e, r, l.
   declare texto  t1.
   t1 := "kaio".
   leia (a).

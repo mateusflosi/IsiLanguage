@@ -38,8 +38,6 @@ public class MainClass {
 
 		} catch (IsiSemanticException ex) {
 			System.err.println("Semantic error - " + ex.getMessage());
-		} catch (IsiLexicException ex) {
-			System.err.println("Lexic error - " + ex.getMessage());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			System.err.println("ERROR " + ex.getMessage());

@@ -1,7 +1,7 @@
 package br.com.professorisidro.isilanguage.ast;
 
 import br.com.professorisidro.isilanguage.datastructures.IsiSymbolTable;
-import br.com.professorisidro.isilanguage.exceptions.IsiLexicException;
+import br.com.professorisidro.isilanguage.exceptions.IsiSemanticException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -123,15 +123,15 @@ public class CommandAtribuicao extends AbstractCommand {
 
 	public void checkTypes() {
 		if (list.get(id).getType() == 0 && !validateInt()) {
-			throw new IsiLexicException(
+			throw new IsiSemanticException(
 					"Erro: Tipo incompatível com a variável \"" + id + "\" era esperado um tipo Int");
 		}
 		if (list.get(id).getType() == 1 && !validateDec()) {
-			throw new IsiLexicException(
+			throw new IsiSemanticException(
 					"Erro: Tipo incompatível com a variável \"" + id + "\" era esperado um tipo Dec");
 		}
 		if (list.get(id).getType() == 2 && !validateString()) {
-			throw new IsiLexicException(
+			throw new IsiSemanticException(
 					"Erro: Tipo incompatível com a variável \"" + id + "\" era esperado um tipo String");
 		}
 	}

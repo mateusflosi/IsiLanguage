@@ -47,8 +47,8 @@ grammar IsiLang;
 		}
 	}
 
-	public void generateCode(){
-		program.generateTarget();
+	public void generateCode(String classe){
+		program.generateTarget(classe);
 	}
 }
 

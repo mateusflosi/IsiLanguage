@@ -12,10 +12,10 @@ public class IsiProgram {
 	private ArrayList<AbstractCommand> comandos;
 	private String programName;
 
-	public void generateTarget() {
+	public void generateTarget(String classe) {
 		StringBuilder str = new StringBuilder();
 		str.append("import java.util.Scanner;\n");
-		str.append("public class MainClass{ \n");
+		str.append("public class " + classe + "{ \n");
 		str.append("\tpublic static void main(String args[]){\n ");
 		str.append("\t\tScanner _key = new Scanner(System.in);\n");
 		for (IsiSymbol symbol : varTable.getAll()) {
@@ -29,7 +29,7 @@ public class IsiProgram {
 		str.append("}");
 
 		try {
-			FileWriter fr = new FileWriter(new File("MainClass.java"));
+			FileWriter fr = new FileWriter(new File("saidas/" + classe + ".java"));
 			fr.write(str.toString());
 			fr.close();
 		} catch (Exception ex) {

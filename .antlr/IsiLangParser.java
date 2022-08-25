@@ -138,8 +138,8 @@ public class IsiLangParser extends Parser {
 			}
 		}
 
-		public void generateCode(){
-			program.generateTarget();
+		public void generateCode(String classe){
+			program.generateTarget(classe);
 		}
 
 	public IsiLangParser(TokenStream input) {

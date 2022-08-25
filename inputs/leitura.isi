@@ -1,0 +1,8 @@
+programa
+
+  declare int a, b , i.
+
+  leia(a).
+  leia(b).
+  leia(i).
+fimprog.

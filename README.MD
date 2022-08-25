@@ -39,7 +39,7 @@ Este projeto é uma implementação do compilador da linguagem isiLanguage, para
   </tr>
   <tr>
     <td>Geração de pelo menos 1 linguagem destino</td>
-    <td> C [ ] <br>Java [✅] <br>Python [ ]</td>
+    <td> C  <br>Java ✅ <br>Python </td>
   </tr>
 </table>
 
@@ -106,7 +106,7 @@ java -cp antlr-4.7.1-complete.jar org.antlr.v4.Tool IsiLang.g4 -package br.com.p
 
 ## Contribuidores: </h2>
 
-* Gabriel Chacon - - https://github.com/Gabriel-Chacon
+* Fernando Gabriel Chacon Fernandes Teruel do Prado - 11201811700 - https://github.com/Gabriel-Chacon
 * Guilherme Cesario Scagnolato - 11201812319 - https://github.com/guiscan
 * Kaio Vinicius Souza Santos - 11201810069 - https://github.com/Kaio1505
 * Laryssa da Silva de Souza - 11201810068 - https://github.com/131819

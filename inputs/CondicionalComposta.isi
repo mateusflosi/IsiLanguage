@@ -9,7 +9,7 @@ programa
 
   se (a > b) entao {
     escreva(a).
-  } entao {
+  } senao {
     escreva(i).
   }
 fimprog.

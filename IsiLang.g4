@@ -151,11 +151,7 @@ cmdIf:
 						_exprDecision = stackDecision.pop();
 
                    	}
-	)? {
-		//Problema nessa parte. Caso coloque apenas um if sem else no input, o else ainda aparecera e com os comandos de outro else. ARRUMAR
-
-		CommandDecisao cmd = new CommandDecisao(_exprDecision, listaTrue, listaFalse);
-        stack.peek().add(cmd);};
+	)?;
 
 cmdWhile:
 	'enquanto' AP expr { _exprDecision = _input.LT(-1).getText(); } OPREL { _exprDecision += _input.LT(-1).getText();

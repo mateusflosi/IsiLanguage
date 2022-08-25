@@ -17,7 +17,9 @@ public class MainClass {
 	public static void main(String[] args) {
 		String[] inputs = { "Leitura", "Escrita", "Atribuicao",
 				"CondicionalSimples", "CondicionalComposta", "Loop",
-				"NovosOperadores", "MainClass" };
+				"NovosOperadores", "CompatibilidadeAtribuicao",
+				"CompatibilidadeAtribuicaoOperadores", "VariaveisNaoDeclaradas",
+				"MainClass" };
 		for (int i = 0; i < inputs.length; i++) {
 			System.out.println("--------" + inputs[i] + ".isi--------\n\n\n");
 			try {

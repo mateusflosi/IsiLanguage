@@ -1,0 +1,6 @@
+programa
+
+  declare int a.
+
+  a := "teste".
+fimprog.

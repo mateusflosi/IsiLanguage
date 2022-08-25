@@ -1,0 +1,4 @@
+programa
+    declare int e.
+    e := 2 ^ 2.
+fimprog.

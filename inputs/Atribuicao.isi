@@ -1,0 +1,13 @@
+programa
+
+  declare int a, b , i.
+  declare texto t1.
+  declare decimal c.
+
+  leia(b).
+  leia(i).
+
+  a := b + i.
+  t1 := "teste".
+  c := 2,1.
+fimprog.

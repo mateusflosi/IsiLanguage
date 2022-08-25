@@ -1,0 +1,23 @@
+programa
+    declare int a, b.
+    
+    leia(a).
+    leia(b).
+
+    enquanto(a>b) faca {
+        escreva (a).
+        enquanto(b<a) faca{
+            escreva(b).
+            enquanto(a==1) faca{
+                escreva(a).
+                escreva(b).
+                escreva(a).
+            }
+            se(b==2) entao{
+                escreva(b).
+                escreva(a).
+                escreva(b).
+            }
+        }
+    }
+fimprog.

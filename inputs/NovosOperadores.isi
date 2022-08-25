@@ -1,0 +1,6 @@
+programa
+    declare decimal e, r, l.
+    e := 2 ^ 2.
+    r := 1 : 2.
+    l := 10 # 10.
+fimprog.

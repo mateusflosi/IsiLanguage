@@ -20,6 +20,7 @@ public class CommandAtribuicao extends AbstractCommand {
 
 	@Override
 	public String generateJavaCode(int indentacao) {
+		expr = expr.replace(',', '.');
 		expr = exp(expr);
 		expr = raiz(expr);
 		expr = log(expr);

@@ -1,0 +1,13 @@
+programa
+
+  declare int a, b , i.
+
+  leia(b).
+  leia(i).
+
+  a := b + i.
+
+  se (a > b) entao {
+    escreva(a).
+  }
+fimprog.
